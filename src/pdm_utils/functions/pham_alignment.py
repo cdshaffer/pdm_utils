@@ -98,6 +98,10 @@ def get_all_pham_gene_translations(alchemist):
         if locus is not None and locus > "":
             geneid = "".join([geneid, " [locus=", str(locus), "]"])
 
+        status = status_lookup[phageid]
+        if status == "draft":
+            geneid = "".join([geneid, " [status=draft]"])
+
         pham_translations = phams.get(phamid, dict())
         gene_ids = pham_translations.get(translation, [])
         gene_ids.append(geneid)
